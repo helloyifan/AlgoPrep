@@ -4,6 +4,10 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+
+## I'm not sure if this is the best approach,
+## But my approach is to basically keep track of the maxVal at the node and the max Sum paths 
 class Solution:
     def maxPathSum(self, root: Optional[TreeNode]) -> int:
         pathVal, maxVal = self.helper(root)
@@ -36,9 +40,13 @@ class Solution:
 s = Solution()
 
 ## Dumb ass test cases
-
-# [1,2,3]
-# [-10,9,20,null,null,15,7]
-# [3]
-# [-3]
-# [2, -1]
+'''
+[1,2,3]
+[-10,9,20,null,null,15,7]
+[3]
+[-3]
+[2, -1]
+[1,-2,3]
+[-1,null,9,-6,3,null,null,null,-2]
+[1,null,2,null,3,null,4,null,5]
+'''
