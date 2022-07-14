@@ -8,9 +8,10 @@ class Solution:
         # You are initially positioned at the array's first index,
         maxDis = 0 
         for i, val in enumerate(nums):
-            maxDis = max(maxDis, i + val)
-            if (maxDis == i and i != len(nums) - 1):
+            if (i > maxDis):
                 return False
+
+            maxDis = max(maxDis, i + val)
 
         # Return true if you can reach the last index, or false otherwise.
         if (maxDis >= len(nums) - 1):
