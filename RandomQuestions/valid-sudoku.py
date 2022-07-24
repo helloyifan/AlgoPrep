@@ -2,7 +2,7 @@ import enum
 from tabnanny import check
 from typing import List
 
-##: 11:40
+##: 11:40 - 12:45
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
         for y, row in enumerate(board):
