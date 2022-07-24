@@ -7,6 +7,6 @@ AlgoPrep
 
 ## Neetcode status
 
-## Questions to revisited
+## Questions to revisit
 jump-game-ii
 
