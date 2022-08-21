@@ -1,3 +1,7 @@
+import sys
+sys.path.insert(0, '../../Testing')
+from ZestyTester import runTests 
+
 from typing import List
 
 class Solution:
@@ -7,13 +11,9 @@ class Solution:
 ## Copy the above only 
 
 s = Solution()
+testCases = {
+    't1': [[1,2,3,1]],
+    't2': [[]]
+}
 
-t1 = [1,2,3,1]
-s1 = s.containsDuplicate(t1)
-print(s1)
-
-t2 = []
-s2 = s.containsDuplicate(t2)
-print(s2)
-
-t3 = [ b ]
+runTests(s.containsDuplicate, testCases)
