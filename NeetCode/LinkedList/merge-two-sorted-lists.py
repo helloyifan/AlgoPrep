@@ -24,8 +24,13 @@ class Solution:
         
         return start.next
 
-s = Solution()
-list1 = [1,2,4]
-list2 = [1,3,4]
-
-s.mergeTwoLists(list1, list2)
+'''
+[1,3,4]
+[1,2,4]
+[]
+[] 
+[]
+[0]
+[1,1,1,1]
+[1,1,1]
+'''
