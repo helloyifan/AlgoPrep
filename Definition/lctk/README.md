@@ -116,15 +116,3 @@ If there were any error or suggestions, please let me know through the GitHub re
 
 Happy LeetCoding!
 
-## Version History
-0.0.1: Initial version.
-
-0.0.2: Added supported for linked list with cycle.
-
-0.0.3: Fixed bugs.
-
-0.0.4: Corrected the wrong usage description of linkedList API.
-
-0.0.5: Fixed an error handling TreeNode with value 0 (@ew-git).
-
-0.0.6: Fixed a typo (@roachsinai).
