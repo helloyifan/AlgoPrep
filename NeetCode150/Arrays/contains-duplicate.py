@@ -1,6 +1,6 @@
 import sys
 sys.path.insert(0, '../../Testing')
-from ZestyTester import runTests 
+from ..Testing.ZestyTester import runTests 
 
 from typing import List
 
