@@ -3,7 +3,7 @@
 
 # Sol:
 # The category is BinSearch,
-# However logically we arn't exactly performing binary search
+# However logically we arn't exactly performing binary search, this is binary tree based solution
 # The idea is to basically find the smallest in L, CurVal, R via BinSearch way (so its logn) time
 
 class Solution(object):
