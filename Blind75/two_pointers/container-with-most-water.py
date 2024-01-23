@@ -1,5 +1,5 @@
 class Solution():
-    def containerWithMostWater(self, nums):
+    def maxArea(self, nums):
         h, t = 0, len(nums) -1
         maxWater = 0
         while h < t:
@@ -19,5 +19,5 @@ class Solution():
 
 if __name__ == '__main__':
     s = Solution()
-    print(s.containerWithMostWater([1, 8, 6, 2, 5, 4, 8, 3, 7]))
-    print(s.containerWithMostWater([1, 1]))
+    print(s.maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]))
+    print(s.maxArea([1, 1]))

@@ -1,6 +1,6 @@
 class Solution():
-    def validPalindrome(self, strVal):
-        strVal = self.remove_non_alpha(strVal.lower())
+    def isPalindrome(self, strVal):
+        strVal = self.remove_non_alpha_numeric(strVal.lower())
         h, t = 0, len(strVal) - 1 
         while h < t:
             if strVal[h] != strVal[t]:
@@ -10,14 +10,16 @@ class Solution():
 
         return True
     
-    def remove_non_alpha(self, strVal):
+    def remove_non_alpha_numeric(self, strVal):
         ret = ''
         for c in strVal:
-            if c.isalpha():
+            # if c.isalpha(): to check if alphabetic
+            if c.isalnum():
                 ret += c
         return ret
 if __name__ == "__main__":
     s = Solution()
-    print(s.validPalindrome("A man, a plan, a canal: Panama"))
-    print(s.validPalindrome('race a car')) # not a palindrome
-    print(s.validPalindrome(' '))
+    print(s.isPalindrome("A man, a plan, a canal: Panama"))
+    print(s.isPalindrome('race a car')) # not a palindrome
+    print(s.isPalindrome(' '))
+    print(s.isPalindrome('0P'))
