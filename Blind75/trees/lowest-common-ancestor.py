@@ -24,24 +24,17 @@ class Solution(object):
     
     def helper(self, root, t, matchMode):
         if root == None:
-            return False
-
-        if root.val == t:
-            if matchMode == False:
-                self.pPath.append(root.val)
-            return True        
+            return False    
 
         l = self.helper(root.left, t, matchMode)
         r = self.helper(root.right, t, matchMode)
 
-        if l == True or r == True:
+        if l == True or r == True or root.val == t:
             if matchMode == False:
                 self.pPath.append(root.val)
             else: # MatchMode == true
                 if root.val in self.pPath and self.lca == None:
                     self.lca = root
-                return True # Returning here intended as short circuit
-
             return True
         else:
             return False
