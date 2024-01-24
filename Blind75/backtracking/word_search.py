@@ -1,5 +1,5 @@
 class Solution():
-    def wordSearch(self, grid, s):
+    def exist(self, grid, s):
         firstChar = s[0]
         self.grid = grid
         
@@ -9,6 +9,8 @@ class Solution():
         for ri, row in enumerate(self.grid):
             for ci, col in enumerate(row):
                 if col == firstChar:
+                    if ci == 1 and ri == 1:
+                        print('here')
                     r = self.helper(s[1:], [{'r': ri, 'c': ci}])
                     if r == True:
                         return True     
@@ -23,21 +25,25 @@ class Solution():
 
         flag = False
 
-        if r - 1 > 0 and not {'r': r-1, 'c': c}  in l and self.grid[r - 1][c] == nextChar:
-            l.append({'r': r-1, 'c': c})
-            flag = self.helper(s[1:], l)
+        if r - 1 >= 0 and not {'r': r-1, 'c': c}  in l and self.grid[r - 1][c] == nextChar:
+            lCopy = l[:]
+            lCopy.append({'r': r-1, 'c': c})
+            flag = self.helper(s[1:], lCopy)
 
         if r + 1 < self.rowSize and not{'r': r+1, 'c': c}  in l and self.grid[r + 1][c] == nextChar:
-            l.append({'r': r+1, 'c': c})
-            flag = self.helper(s[1:], l)
+            lCopy = l[:]
+            lCopy.append({'r': r+1, 'c': c})
+            flag = self.helper(s[1:], lCopy)
         
-        if c - 1 > 0 and not {'r': r, 'c': c-1 }  in l and self.grid[r][c - 1] == nextChar:
-            l.append({'r': r, 'c': c-1})
-            flag = self.helper(s[1:], l)
+        if c - 1 >= 0 and not {'r': r, 'c': c-1 }  in l and self.grid[r][c - 1] == nextChar:
+            lCopy = l[:]
+            lCopy.append({'r': r, 'c': c-1})
+            flag = self.helper(s[1:], lCopy)
 
         if c + 1 < self.colSize and not {'r': r, 'c': c+1 }  in l and self.grid[r][c + 1] == nextChar:
-            l.append({'r': r, 'c': c+1})
-            flag = self.helper(s[1:], l)
+            lCopy = l[:]
+            lCopy.append({'r': r, 'c': c+1})
+            flag = self.helper(s[1:], lCopy)
 
         if flag == False:
             return False
@@ -52,8 +58,18 @@ if __name__ == "__main__":
         ["S", "F", "C", "S"],
         ["A", "D", "E", "E"],
     ]
-    # print(s.wordSearch(t1, "ABCCED"))
-    # print(s.wordSearch(t1, "SEE"))
-    # print(s.wordSearch(t1, "ADEE"))
-    # print(s.wordSearch(t1, "ADEZ"))
-    print(s.wordSearch(t1, "ABCB"))
+    # print(s.exist(t1, "ABCCED"))
+    # print(s.exist(t1, "SEE"))
+    # print(s.exist(t1, "ADEE"))
+    # print(s.exist(t1, "ADEZ"))
+    # print(s.exist(t1, "ABCB"))
+    t2 = [
+        ["A", "B"],
+    ]
+    # print(s.exist(t2, "BA"))
+    t3 = [
+        ["C","A","A"],
+        ["A","A","A"],
+        ["B","C","D"]
+    ]
+    print(s.exist(t3, "AAB"))
