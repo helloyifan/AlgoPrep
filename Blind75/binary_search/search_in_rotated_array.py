@@ -1,3 +1,4 @@
+# This one is actually cool, its best explained when you draw it out
 
 class Solution(object):
     def search(self, nums, target):
