@@ -1,3 +1,4 @@
+# I did this one poorly i think its really slow
 from collections import defaultdict
 import copy
 
