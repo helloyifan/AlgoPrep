@@ -1,5 +1,6 @@
 ## Notes:
 '''
+Notes from attempt 1 of bottom up:
 # Round 1
 1: [1]
 2: [2]
@@ -16,6 +17,9 @@
 Too lazy to write
 '''
 
+'''
+Attempt 2finally passed
+'''
 
 # Looking back this was a pretty naive solution, using a dict and keeping track how many number of each would of been a better datastructure
 class Solution(object):
@@ -29,61 +33,38 @@ class Solution(object):
             return 0
 
         dp = {}
-        minKey = float('inf')
-        # Initial setup
+        minVal = float('inf') #the minimum  value we can currently make (if it above target then theres no target)
+        # Inital insert
         for coin in coins:
-            dp[coin] = [coin]
-            minKey = min(minKey, coin)
+            dp[coin] = 1
+            minVal = min(minVal, coin)
 
+        # need a condition, when do we stop
+        # we go until we have target, unless target is unachieveable
+        while amount not in dp and minVal < amount:
+            tempDp = {}
+            minVal = float('inf') # Reset minVal
 
-        while (amount not in dp) and minKey < amount: # How do we know when to stop 
-            print(minKey)
-            print(dp)
-            minKey = float('inf') # Reset the minKey (to be max val) so we can figure the lowest amount of coins after getting 1 of every new coin
-            newDp = {}
             for key, value in dp.items():
                 for coin in coins:
                     newKey = key + coin
-                    minKey = min(minKey, newKey)
-
-                    # Less efficient to make this but not use it always
-                    newValue = value[:]
-                    newValue.append(coin)
-
-                    if newKey in newDp:
+                    newValue = value + 1
+                    if newKey in dp and dp[key] < newValue:
                         continue
 
-                    elif newKey in dp:
-                        if len(dp[newKey]) > len(newValue):
-                            newDp[newKey] = newValue
-                        else:
-                            newDp[newKey] = dp[newKey]
-
-                    elif newKey in newDp:
-                        if len(newDp[newKey]) > len(newValue):
-                            newDp[newKey] = newValue
-                
-                    else: # newKey not in newDp:
-                        newDp[newKey] = newValue
-                        if newKey == amount:
-                            break
-
-
-            dp = newDp
-            # print(dp)
-
+                    minVal = min(minVal, newKey)
+                    tempDp[newKey] = newValue
+            dp = tempDp.copy()
+        
         if amount in dp:
-            return len(dp[amount])
+            return dp[amount]
         return -1
 
 if __name__ == '__main__':
     s = Solution()
-    # print(s.coinChange([1,2,5], 11))
-    # print(s.coinChange([2], 3))
-    # print(s.coinChange([1], 0))
-    # print(s.coinChange([1], 1))
-    # print(s.coinChange([1,2147483647], 2))
+    print(s.coinChange([1,2,5], 11))
+    print(s.coinChange([2], 3))
+    print(s.coinChange([1], 0))
+    print(s.coinChange([1], 1))
+    print(s.coinChange([1,2147483647], 2))
     print(s.coinChange([2,4,6,8,10,12,14,16,18,20,22,24], 9999)) # This solution is too slow for this
-
-    
-    
