@@ -2,6 +2,8 @@
 # Tried some more, this solution works but is too slow
 
 # Tosolve: add memoization (if you know a course is cycle less, store it and look itup)
+
+# Added memoization in 5 mins
 class Solution(object):
     def canFinish(self, numCourses, prerequisites):
         """
@@ -11,6 +13,9 @@ class Solution(object):
         """
         self.adjacencyListDict = {} # {1 : {0: True}}, this means to take 1 you need 0
         # Iterate through this adjacencyListDict to check for cycles
+        
+        # Naivly add memoization
+        self.memoization = {}
 
         # Setup all the courses
         for courseName in range(numCourses):
@@ -32,7 +37,9 @@ class Solution(object):
     # The problem is that heads neighours could have multiple branches
      
     def helper(self, head, visited):
-        if head in visited:
+        if head in self.memoization:
+            return True
+        elif head in visited:
             return False
         
         visited.append(head)
@@ -43,6 +50,7 @@ class Solution(object):
             if curFlag == False:
                 return False
 
+        self.memoization[head] = True
         return True
     
 if __name__ == '__main__':
