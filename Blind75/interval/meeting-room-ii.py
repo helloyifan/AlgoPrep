@@ -15,6 +15,8 @@ class Solution:
             return 0 # Phuck you stupid edge case 
         
         intervals = sorted(intervals, key = lambda key: key.end)
+        # We use key.end because we wanna evaluate the meetings with late end times last
+        # That way we can figure out if fit into any other days
 
         lastMeetingEndTimes = []
         lastMeetingEndTimes.append(intervals[0].end)
