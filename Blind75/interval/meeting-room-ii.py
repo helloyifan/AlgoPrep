@@ -1,6 +1,6 @@
 # Had to do it on neetcode website instead of leetcode
 # One thing i dont really see is why we need to sort by key.end rather then key.start
-
+# Took 20 mins
 """
 Definition of Interval:
 """
