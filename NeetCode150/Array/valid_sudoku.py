@@ -1,7 +1,6 @@
 
-class ValidSudoku():
-
-    def valid_sudoku(self, board):
+class Solution(object):
+    def isValidSudoku(self, board):
         if not self.check_horizontal(board):
             print('not horizontal')
             return False
@@ -14,7 +13,7 @@ class ValidSudoku():
             print('not grid')
             return False
         
-
+        return True
 
     def check_horizontal(self, board):
         for r in board:
@@ -58,14 +57,12 @@ class ValidSudoku():
                 check_list.append(i)
         return True
     
-
-
     def sudoku_printer(board):
         for r in board:
             print(r)
 
 if __name__ == "__main__":
-    sol = ValidSudoku()
+    sol = Solution()
 
     board = [
         ["1","2",".",".","3",".",".",".","."],
@@ -79,6 +76,27 @@ if __name__ == "__main__":
         [".",".",".",".","8",".",".","7","9"]
     ]
 
-    sol.valid_sudoku(board)
+    board2 = [["5","3",".",".","7",".",".",".","."]
+        ,["6",".",".","1","9","5",".",".","."]
+        ,[".","9","8",".",".",".",".","6","."]
+        ,["8",".",".",".","6",".",".",".","3"]
+        ,["4",".",".","8",".","3",".",".","1"]
+        ,["7",".",".",".","2",".",".",".","6"]
+        ,[".","6",".",".",".",".","2","8","."]
+        ,[".",".",".","4","1","9",".",".","5"]
+        ,[".",".",".",".","8",".",".","7","9"]
+    ]
+
+    board3 = [["8","3",".",".","7",".",".",".","."]
+    ,["6",".",".","1","9","5",".",".","."]
+    ,[".","9","8",".",".",".",".","6","."]
+    ,["8",".",".",".","6",".",".",".","3"]
+    ,["4",".",".","8",".","3",".",".","1"]
+    ,["7",".",".",".","2",".",".",".","6"]
+    ,[".","6",".",".",".",".","2","8","."]
+    ,[".",".",".","4","1","9",".",".","5"]
+    ,[".",".",".",".","8",".",".","7","9"]]
+
+    print(sol.isValidSudoku(board3))
 
     
