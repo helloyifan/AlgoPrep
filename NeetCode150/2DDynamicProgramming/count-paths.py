@@ -1,3 +1,4 @@
+# Took 30 min to do both, but it was fun
 class Solution:
     def topDown_uniquePaths(self, m: int, n: int) -> int:
         if m == 1 and n == 1:
