@@ -8,6 +8,8 @@
 # However, you do not want to count hits on the same letter twice for one word,
 # should the prev rol / prev col must never be the cur row or cur col
 
+# Passes neetcode tests
+
 class Solution:
     def longestCommonSubsequence(self, text1: str, text2: str) -> int:
         # text1 direction(v), text2 direction(>)
