@@ -1,54 +1,50 @@
 from typing import List
 
 # Tried for 30 mins, got confused and stuck
+# Tried for 20min, the solution is not great but it passes
 class Solution:
     def islandsAndTreasure(self, grid: List[List[int]]) -> None:
 
         for ri, re in enumerate(grid):
             for ci, ce in enumerate(re):
                 if ce == 0:
-                    self.recursivelyMoveAround(ri, ci, grid)
+                    self.itrativelyMoveAround(ri, ci, grid)
 
         return
 
-    def recursivelyMoveAround(self, ri, ci, grid):
+    def itrativelyMoveAround(self, ri, ci, grid):
         maxR, maxC = len(grid), len(grid[0])
+        traversed = set()
         
-        
-        q = []
-        q.append((ri, ci))
-        stepsAway = 0 
+        stepsAway = 0
 
-        replaceMentQ = []
-        while len(q) > 0 or len(replaceMentQ) > 0:
-            self.printGrid(grid)
-            
+        nq = []
+        nq.append((ri, ci))
+
+        while len(nq) > 0:
+            q = nq[:]
+            nq = []
+
             while len(q) > 0:
-                #print(q)
-                c = q.pop(0)
-                v = grid[c[0]][c[1]]
+                curNode = q.pop(0)
+                traversed.add(curNode)
 
-                if v == -1:
-                    continue
-                if v == 0 and stepsAway > 0:
-                    continue
-                
-                if v == 2147483647:
-                    print("hit")
-                    grid[c[0]][c[1]] = stepsAway # for first time we set it from 0 to 0?
+                # handle cur step
+                if grid[curNode[0]][curNode[1]] > stepsAway:
+                    grid[curNode[0]][curNode[1]] = stepsAway
 
-
-                dirs = [(0,-1), (0,1), (-1,0), (1,0)]
+                # handle next steps
+                dirs = [(0,1), (0,-1), (1, 0), (-1, 0)]
                 for dir in dirs:
-                    newRow = c[0] + dir[0]
-                    newCol = c[1] + dir[1]
-                    if newRow >= 0 and newRow < maxR and newCol >= 0 and newCol < maxC:
-                        replaceMentQ.append((newRow, newCol))
-                
-            # done with the current round, setup for next round
-            q = replaceMentQ[:]
-            stepsAway += 1
+                    newR = curNode[0] + dir[0]
+                    newC = curNode[1] + dir[1]
+                    if newR >= 0 and newR < maxR and newC >=0 and newC < maxC:
+                        if not (newR, newC) in traversed:
+                            if grid[newR][newC] != 0 and grid[newR][newC] != -1:
+                                nq.append((newR, newC))
 
+            stepsAway += 1
+        #self.printGrid(grid)
         return 
 
     def printGrid(self, grid):
@@ -67,3 +63,10 @@ if __name__ == "__main__":
         [0,-1,2147483647,2147483647]
     ]
     sol.islandsAndTreasure(input1)
+
+    input2 =  [
+        [0,-1],
+        [2147483647,2147483647]
+    ]
+    sol.islandsAndTreasure(input2)
+
