@@ -1,0 +1,9 @@
+apple
+dog
+banana
+cat
+dog
+apple
+elephant
+frog
+cat
