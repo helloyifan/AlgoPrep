@@ -41,9 +41,10 @@ class Solution:
             neighbors = nodes[node]
             visited.append(node)
             for neighbor in neighbors:
-                temp = helper(neighbor, copy.deepcopy(visited))
+                temp = helper(neighbor, visited)
                 if temp == True:
                     return True
+            visited.remove(node)
             return False
      
         for node in nodes:
