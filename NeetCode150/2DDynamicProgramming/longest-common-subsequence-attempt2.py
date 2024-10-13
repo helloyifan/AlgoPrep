@@ -1,3 +1,6 @@
+# This is an accepted solution
+# Time complexity: O(m*n)
+# Space complexity: O(m*n
 class Solution:
     def longestCommonSubsequence(self, text1: str, text2: str) -> int:
         # text1 direction(v), text2 direction(>)

@@ -21,7 +21,10 @@ class Solution:
         ret = helper(s1, s2, s3)
         print(ret)
         return ret
-
+    
+    def dpSolution(self, s1, s2, s3):
+        
+        return
     def isInterleave(self, s1: str, s2: str, s3: str) -> bool:
         return self.recursiveSolution(s1,s2,s3)
         

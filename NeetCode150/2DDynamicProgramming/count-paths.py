@@ -1,4 +1,6 @@
 # Took 30 min to do both, but it was fun
+# Time complexity: O(m*n) - We iterate through all the cells once
+# Space complexity: O(m*n)
 class Solution:
     def topDown_uniquePaths(self, m: int, n: int) -> int:
         if m == 1 and n == 1:
