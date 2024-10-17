@@ -1,6 +1,7 @@
 # Spent an hour on it, need to debug ret vs curRet, solved it with another 15mins of debugging
 # FInally got it on NC, doesnt pass LC for the long runtime so there are still optimizations i can make with "Greedy Post Order DFS"
 # The correct way do not require you to add stuff back to adjlist
+# You need to copy the children at every level, and dont revist children that dont work out 
 
 # Runtime
 # O(n!) because DFS is O(V+E) which is linear and we are running the backtracking while loop up to N-1 time for each level
