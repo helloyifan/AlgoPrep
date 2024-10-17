@@ -26,7 +26,7 @@ class Solution:
                 
             children = adjList[node]
             failedChildrenCounter = 0 
-            while len(children) > 0:
+            while len(children) > 0: #This is not the correct looping condition, its too expensive
                 if failedChildrenCounter == len(children):
                     return False
 
@@ -39,7 +39,6 @@ class Solution:
                     #add back to list
                     children.append(firstAlphaAirport)
                     #remove from ret
-                    # ret = ret[:len(ret)-1] #remove the last inserted
                     ret.pop()
                     failedChildrenCounter +=1 # once every child has failed, this branch is doomed
                 else:
