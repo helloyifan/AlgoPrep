@@ -1,8 +1,9 @@
-# Solved the neetcode test cases in 28mins, but failed LC test cases for taking too long
-from typing import List
+# Attempt 1 Solved the neetcode test cases in 28mins, but failed LC test cases for taking too long (Dfs solutoin)
+# Attemp 2 Using BFS solution, basically for shortest question, BFS is faster
+from typing import  List
 
 class Solution:
-    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+    def attempt1DFSSolution(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
         visited = []
         
         def dfs(curWord, curVisited):
@@ -44,6 +45,21 @@ class Solution:
             if diff == 1:
                 ret.append(word)
         return ret
+
+    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+        visited = []
+
+        q = []
+        q.append(beginWord)
+        while len(q) > 0:
+            nextQueue = []
+            while len(q) > 0:
+                currentWord = q.pop()
+                nextSteps = self.validNextSteps()
+                nextQueue.extend(nextSteps) # need t ofilter to make sure we arn't revisiting visited
+
+
+        return
 
 sol = Solution()
 sol.ladderLength("cat", "sag", ["bat","bag","sag","dag","dot"]) # 4
