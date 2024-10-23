@@ -1,0 +1,42 @@
+# Design a Distributed Message Queue
+
+## Fucntional Requirments
+
+1. Fanout
+   * One one Publisher / Producer can have multiple Consumer/Subscribers
+2. Retain messages until delivered
+3. At least once delivery (only do this)
+4. Exactly once delivery (dropping this from reqs becaue it complicated)
+
+## Non Functional
+
+1. Scalable
+   * Horizontally scalled
+2. Persistent Storage
+3. Throughput (high)
+
+
+## High Level Design
+
+### At Least once delivery
+
+1. Publishers ->  Publish Forwarders -> Database
+
+* Publish Forwarders would also acknolwedgement (ACK) with Publisher to confirm the message is stored (fault tolerance)
+* Typically dones with HTTP, also consideration with security
+
+1. Database -> Subscriber Forwarders -> Subscriber
+
+* Once the message is stroed subscriber forwards can start reading message and Writes to Subscribers
+* Once a message has been read with the relevent subscribers (ACK)
+* Then we can remove the message from stroage
+
+### Topic / Subscriptions - Fanout
+
+* Can store different business requirement in different topics
+* Messages are published by topics
+* Messages are received by subscriptions
+  * one subscription can get the messages of multiple topics
+  * multiple subscribers can receive message for the same subscription
+
+Stopped at 13 mins
