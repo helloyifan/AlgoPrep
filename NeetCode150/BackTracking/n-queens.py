@@ -1,4 +1,5 @@
 from typing import List
+import copy
 from collections import defaultdict
 class Solution:
     def solveNQueens(self, n: int) -> List[List[str]]:
@@ -14,8 +15,7 @@ class Solution:
         row = set()
         col = set()
         onTheBoardSoFar = set()
-        ret = []
-        def backTrack(remainingQueens):
+        def backTrack(remainingQueens, ret):
             if remainingQueens == 0:
                 return True
             
@@ -26,22 +26,69 @@ class Solution:
                         row.add(r)
                         col.add(c)
                         onTheBoardSoFar.add((r,c))
-                        tempRet = backTrack(remainingQueens-1)
-                        if tempRet == True:
-                            # Write this to ret
-                            ret.append([r,c])
-                            return True
+                        
+                        tempRet = backTrack(remainingQueens-1, ret)
                         
                         row.remove(r)
                         col.remove(c)
                         onTheBoardSoFar.remove((r,c))
+                        
+                        if tempRet == True:
+                            # Write this to ret
+                            ret.append((r,c))
+                            return True
+                        
+
             return ret
         
-        backTrack(n)
-        print(ret)
-        return
+        fin_ret = set()
+        # First levels
+        for r in range(n):
+            for c in range(n):
+                if self.validation(row, col, onTheBoardSoFar, n, r, c):
+                    row.add(r)
+                    col.add(c)
+                    onTheBoardSoFar.add((r,c))
+
+                    ret = []
+                    tempRet = backTrack(n-1, ret)
+
+                    row.remove(r)
+                    col.remove(c)
+                    onTheBoardSoFar.remove((r,c))
+       
+                    if tempRet == True:
+                        ret.append((r,c))
+                        ret.sort()
+                        ret = tuple(ret)
+                        fin_ret.add(ret)
+
+        
+        #print(fin_ret)
+
+        boards = []
+
+        for ret in fin_ret:
+            cur_board = copy.deepcopy(board)
+            for q in ret:
+                cur_board[q[0]][q[1]] = 'Q'
+
+            boards.append(cur_board)
+
+        string_boards = []
+        for board in boards:
+            string_board = []
+            for row in board:
+                row = "".join(row)
+                string_board.append(row)
+            string_boards.append(string_board)
+
+        for sb in string_boards:
+            self.boardPrinter(sb)
+            print('-----')
+        return string_boards
     
-    def boardPrinter(board):
+    def boardPrinter(self, board):
         for row in board:
             print(row)
     
