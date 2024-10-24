@@ -34,10 +34,11 @@ class Solution:
                         
                         row.remove(r)
                         col.remove(c)
+                        onTheBoardSoFar.remove((r,c))
             return ret
         
         backTrack(n)
-        print(row, col)
+        print(ret)
         return
     
     def boardPrinter(board):
@@ -57,19 +58,18 @@ class Solution:
         # Todo calculate diagons
 
         ## This needs debugging
-        if not (self.diagnoalValidations(onTheBoardSoFar, n, r , c)):
+        if not (self.diagnoalValidations(onTheBoardSoFar, n, r, c)):
             return False
 
         return True
 
     ## This needs debugging
     def diagnoalValidations(self, onTheBoardSoFar, n, r, c):
-
         dirs = [(1,1), (1,-1), (-1, 1), (-1, -1)]
 
         for d in dirs:
-            incrementR = r
-            incrementC = c
+            incrementR = r + d[0]
+            incrementC = c + d[1]
             while (-1 < incrementR < n) and (-1 < incrementC < n):
                 if (incrementR, incrementC) in onTheBoardSoFar:
                     return False
@@ -97,3 +97,7 @@ sol.solveNQueens(4)
 # testSet.add((1,1))
 # testSet.add((2,2))
 # print(sol.diagnoalValidations(testSet, 4, 3, 3))
+
+#testSet = set()
+#testSet.add((2,2))
+#print(sol.diagnoalValidations(testSet, 4, 1, 2))
