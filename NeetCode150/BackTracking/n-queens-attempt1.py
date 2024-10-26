@@ -1,3 +1,8 @@
+# spent 2hours on this solution, i think it works and its my own ideas
+# however i dont think i can move forwards with it
+# I think it does grant the same result, but the inefficients with diagnoal calculations 
+# makes it too slow for Neetcode
+
 from typing import List
 import copy
 from collections import defaultdict
@@ -102,9 +107,6 @@ class Solution:
         if c in col:
             return False
         
-        # Todo calculate diagons
-
-        ## This needs debugging
         if not (self.diagnoalValidations(onTheBoardSoFar, n, r, c)):
             return False
 
@@ -136,8 +138,8 @@ class Solution:
 # r- 1, c + 1
 
 sol = Solution()
-sol.solveNQueens(4)
-# Result 4
+#sol.solveNQueens(4)
+print(sol.solveNQueens(5))
 
 # testSet = set()
 # testSet.add((0,0))

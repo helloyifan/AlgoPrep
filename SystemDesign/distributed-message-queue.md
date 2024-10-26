@@ -39,4 +39,42 @@
   * one subscription can get the messages of multiple topics
   * multiple subscribers can receive message for the same subscription
 
-Stopped at 13 mins
+
+### Database Design
+
+Since we don't need to do complex joins, we can likely use NoSQL
+   * Relational would be another solution if we want to use ACID
+      * Leverage Isolation since we have multiple forwarders
+Key design: id_timestamp
+Body: JSON we are storing
+
+### Additional Retention
+
+Keep messages for 7 days
+
+Replication messaages between different data centers
+
+### Considerations for Latency vs Fault Tolerance
+
+When it comes to replication
+
+Question:
+Do we want to send ack, to publisher after its wriitten to one database or only send ack after it has been replicated once
+
+Trade off
+Latency: if we wait for replication
+Fault Tolerence is less ideal if we dont wait
+
+
+### Pull vs Push based delivery
+
+* Pull Delivery:  subscribers checks for content at set cadence
+   * if theres no messages then then its alot of wasted processing
+   * benefit is requested can process data when it sends requests
+   * this is better for batch processing
+
+* Push Delivery: Subscriber forwarder pushes to subscriber asap
+   * waits for Ack from subscriber to mark as messaged pushed
+   * downside is that we might overwhelm subscribers
+   * downside is wasted processing is subscriber is not ready for messages
+   * upside is better latency
