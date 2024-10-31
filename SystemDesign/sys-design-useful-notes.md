@@ -21,6 +21,8 @@ Reliability - What happens when a load balancer goes down?
 - Good for read heavy systems
 - Optimized for high write throughput
 - Eventual consistency
+- BASE
+  - Base means **eventual consistency**
 
 ### SQL
 
