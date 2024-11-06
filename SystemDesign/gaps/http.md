@@ -29,15 +29,19 @@ A network protocol is a set of rules governing data communication between device
 
 3xx - Redirection:
     301 - Moved Permanently
+        - **broswer can cache this redirect**
     302 - Found (Temporary Redirect)
+        - **browser shouldnt cachem might be different net time**
     304 - Not Modified
 
 4xx - Client Errors:
     400 - Bad Request
     401 - Unauthorized
+    402 - Payment Required
     403 - Forbidden
     404 - Not Found
     405 - Method Not Allowed
+    406 - Not Acceptable
     408 - Request Timeout
     429 - Too Many Requests
 
