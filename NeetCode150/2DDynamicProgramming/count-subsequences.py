@@ -52,10 +52,37 @@ class Solution:
 
         finRet = dfs(0, t)
         print(finRet)
-        return finRet   
+        return finRet
+    
+    def anotherSolutionThatsTooSlow(self, s: str, t: str) -> int:
+        dp = [] #{ ("string", "sIndex") : true}
+        dp.append('')
+        for i in range(len(s)):
+            tempDp = []
+            while len(dp) > 0:
+                c = dp.pop()
+                curSChar = s[i]
+
+                withNewChar = c[:] + curSChar
+                
+                if len(withNewChar) <= len(t) and withNewChar == t[:len(withNewChar)]: #First n letters match
+                    tempDp.append(withNewChar)
+
+                withOutnewChar = c[:]
+                if len(withOutnewChar) <= len(t) and withOutnewChar == t[:len(withOutnewChar)]: #First n letters match
+                    tempDp.append(c[:len(withOutnewChar)])
+            dp = tempDp
+
+        finRet = 0
+        for i in dp:
+            if i == t:
+                finRet +=1
+        # print(dp)
+        # print(finRet)
+        return finRet
 
 sol = Solution()
-#sol.numDistinct("caaat", "cat") # 3
+sol.numDistinct("caaat", "cat") # 3
 sol.numDistinct("xxyxy", "xy") # 5
 
 sol.numDistinct("rabbbit", "rabbit") # 3
