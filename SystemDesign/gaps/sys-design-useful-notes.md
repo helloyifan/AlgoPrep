@@ -72,3 +72,32 @@ PACELC: Todo this
 ## HTTP Headers / Authentications
 
 ### Authorization token
+
+
+---
+
+# How to scale a SQL db?
+
+Read only Replicas
+
+Sharing
+
+
+
+# NoSQL databases tend to handle large-scale data better than SQL databases.
+    - Scalability
+    - Data model flexibility
+    - Throughput and Low-Latency: For certain operations, especially simple data retrievals
+    - Distribution and Fault Tolerance: Many NoSQL databases are designed to handle replication and distribution across multiple nodes
+
+
+# SQL databases are still strong contenders for scale in scenarios where data cons
+istency, complex querying, and transaction guarantees are essential
+
+
+weakness
+in hashinh knowlege
+
+weakness in constistent hashing
+
+
