@@ -117,6 +117,7 @@ For our use case 301 makes for better peformace, but 302 can enable us to collec
 ### Hashing
 
 * Hashing, can't guarantee no colision
+  * SHA256, MD5
   * Two different strings could result in the same hash
   * Thats why this solution doesnt work
   

@@ -27,7 +27,7 @@ Navigate from source to desination
 ### Spacial Indexing Concept
 
 Querying spatial data like maps as quick as possible
-- Spatial indexing
+- Spatial indexing (break up the world into squares)
 - Think of the earth is y and x (2d)
 
 How do we store it a relation database
@@ -64,7 +64,7 @@ lets break up the world into squares
 
 Note google maps has an offline mode, basically once you have route all you need is GPS signal to figure out where you are
 
-Route Services
+#### Route Services
 
 - **Focus of this interview**
 - Route Service -> cache -> GraphDB
@@ -80,7 +80,7 @@ Route Services
         - We can index this nosql table with inmemory quadtree in memory
 
 
-## Location Sevice
+#### Location Sevice
 
 - Traffic information
 - Historical information
@@ -88,7 +88,7 @@ Route Services
     - NoSqL has large amount of data
 - Use Kafka or Kineses to store the aggregated version of this information in another DB to represent **traffic data**
 
-### Traffic Data
+##### Traffic Data
 
 - Can be used to set weights on the graph that is used to set route
 
