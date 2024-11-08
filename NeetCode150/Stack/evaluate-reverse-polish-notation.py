@@ -1,4 +1,9 @@
 # Did it on neetcode and it took 26mins, debugged alot of edge cases
+
+# Complexity Analysis
+# Time Complexity: O(n) for loop
+# Space Complexity: O(n) potetnially everything can be on the stack
+
 from typing import List
 
 class Solution:

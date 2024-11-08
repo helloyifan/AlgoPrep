@@ -3,6 +3,11 @@
 # Intuition is stack and ret are different
 # You ad dthe prev day to the stack
 # everytime you check how many prev days you can pop off with the current temp
+
+# Complexity Analysis
+# Time Complexity: O(n) processs each temp twice, once you pop on, once you pop off
+# Space Comeplxity: O(n) stack can contain one of everything, ret is the length of temp
+
 from typing import List
 class Solution:
     def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
