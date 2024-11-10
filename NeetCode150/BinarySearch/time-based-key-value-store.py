@@ -9,8 +9,19 @@
 # Space Complexity:
 # O(n), each record is stored in our data structures
 
+
+# Attempt 2:
+# one thing to note is that since its "timestamps timestamp of set are strictly increasing."
+# So no need to sort
+# The reason why it was failing before was because of the nlogn sorting and n for converting dict to list
+# now, we just keep a list and do logn binary search on the list
+# Time Complexity for get: O(logn)
+# Space Complexity:
+# O(n), each record is stored in our data structures
+
+
 from collections import defaultdict
-class TimeMap:
+class Attempt1TimeMap:
 
     def __init__(self):
         self.hash = defaultdict(dict) #{key: {time: val}}
@@ -41,6 +52,37 @@ class TimeMap:
                 end = mid-1
             else:
                 print("something bad happened")
+
+        #print("prevValThatsSmaller: ", prevValThatsSmaller)
+        if prevValThatsSmaller == None:
+            return ""
+        return prevValThatsSmaller[1]
+    
+class TimeMap:
+
+    def __init__(self):
+        self.hash = defaultdict(list) #{key: {time: val}}
+        return
+    def set(self, key: str, value: str, timestamp: int) -> None:
+        self.hash[key].append((timestamp, value))
+        return
+    def get(self, key: str, timestamp: int) -> str:
+        if not key in self.hash or len(self.hash[key]) == 0:
+            return ''
+
+        binSearchList = self.hash[key]        
+
+        start, end = 0, len(binSearchList) -1
+        prevValThatsSmaller = None
+        while start <= end:
+            mid = (start + end)//2
+            if binSearchList[mid][0] < timestamp:
+                prevValThatsSmaller = binSearchList[mid]
+                start = mid+1
+            elif binSearchList[mid][0] > timestamp:
+                end = mid-1
+            elif binSearchList[mid][0] == timestamp:
+                return binSearchList[mid][1] # we got the value
 
         #print("prevValThatsSmaller: ", prevValThatsSmaller)
         if prevValThatsSmaller == None:
