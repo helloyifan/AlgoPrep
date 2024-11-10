@@ -1,5 +1,10 @@
 # Solved in 7mins from intuition
 
+# Time complexity:
+# O(n) DFS traversal, we process each node once
+# Space complexity:
+# O(n) Worst case is that every node ends up in the stack
+
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -10,14 +15,14 @@
 class Solution:
     def goodNodes(self, root: TreeNode) -> int:
         
-        def helper(r, maxValSoFar):
+        def dfs(r, maxValSoFar):
             if r == None:
                 return 0 # If this is or is not good
             
             maxValNow = max(r.val, maxValSoFar)
 
-            left = helper(r.left, maxValNow)
-            right = helper(r.right, maxValNow)
+            left = dfs(r.left, maxValNow)
+            right = dfs(r.right, maxValNow)
 
             ret = 0
 
@@ -29,6 +34,6 @@ class Solution:
             ret += right
             return ret
 
-        ret = helper(root, float('-inf'))
+        ret = dfs(root, float('-inf'))
         print(ret)
         return ret

@@ -1,6 +1,11 @@
 # Spent 11 mins trying to do it through DFS, but this is a BFS question
 # Spent 13 min using list for q (solved in 25mins)
 
+# Time complexity:
+# O(n) BFS traversal, we process each node once
+# Space complexity:
+# O(n) Worst case is that every node ends up in queue q
+
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
