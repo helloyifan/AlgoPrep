@@ -1,4 +1,15 @@
 # Took 36min, of just coding and abusing the debugger bcuz im kinda stupid
+# brute force solution
+# Time Comp:
+# O(n^2) range length and we interate length times
+# Space Complexity 
+# O(1)
+
+# greey solution
+# Time Comp:
+# O(n) 
+# Space Complexity 
+# O(1)
 from typing import List
 class Solution:
     
@@ -41,57 +52,53 @@ class Solution:
         return index
 
     def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
-        return
+        if sum(gas) < sum(cost):
+            print(-1)
+            return -1
+
+        total = 0
+        ret = 0
+        for i in range(len(gas)):
+            total += gas[i] - cost[i]
+
+            # If total is <0 then it doesnt work 
+            # We ran out of gas
+            # We are being greedy so
+            # We presume the next spot is the starting spot
+            if total < 0:
+                # When the number is less then 0, we reset it to 0
+                # because we update the starting point
+                total = 0 
+                
+                ret = i + 1
+        print(ret)
+        return ret
         
 sol = Solution()#
 sol.canCompleteCircuit([1,2,3,4], [2,2,4,1]) # 3
 sol.canCompleteCircuit([1,2,3], [2,3,2]) # -1
 
 
+sol.canCompleteCircuit([1,2,3,4,5], [3,4,5,1,2]) # 3
+
 # Stepping through the problem
-# Col 1 is cost, col 2 is gas
+# gas   1, 2, 3, 4
+# cost  2, 2, 4, 1
+# diff  -1, 0, -1, 3
+# total:
+#       -1, 0, -1, 3 
+# 3 is the first point where the sum is greater then 0
+# when the number is less then 0, we reset it to 0
 
-# 0, +1 = 1
-# -2, +2 (cant dont have enough gas)
-# -2, +3
-# -4, +4
+# Answer is index 3
 
-# 0, +2 = 2
-# -2, +3 = 3 (just enough gas)
-# -4, +4 (cat dont have enough gas)
-# -1, +1 
-
-# 0, +3 = 3
-# -4, +4 (dont have enough gas)
-# -1, +2
-# -2, +2
-
-# Edge case 2
-# It impossible if it cost more then we get (that case we return -1)
-
-# It will always be possible otherwise
-# There is only one solution
-
-# cost [4,1,2,3]
-# gas [5,2,3,0]
-
-#  0, +2 = 2
-# -1, +3 = 4
-# -2, 0 = 2
-# -3 (dont have enough)
-
-# 0, +5 = 5
-# -4, +2 = 3
-# -1, +3 = 5
-# -2, 0 = 3
-# -3, 5 = 5
-# --------
-# Writing it more logically
-# +5, -4 = 1
-# +2, -1 = 2
-# +3, -2 = 3
-# +0, -3 = 0
+# gas    1,  2,  3, 4, 5
+# cost   3,  4,  5, 1, 2
+# diff  -2, -2, -2 ,3, 3
+# total:
+#       -2, -2, -2, 3, 6 
 
 
-# It seems like if you start with the highest gas, you win, but thats not accurate
-# its figuring out where your gas is less then 0
+# answer is index 3
+# From this test case, we observe that we need the 
+# first point where the total sum is greater then 0
