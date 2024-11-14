@@ -1,4 +1,12 @@
 from collections import defaultdict
+# Time comeplexity
+# head for loop O(n)
+# tails for loop O(n) but sine its sliding window we dont run for each iteration of head
+# max check is O(1)
+# Total O(n+n+1) = O(n)
+
+# Space Complexity
+# dd is O(m) where m is the number of unique characters
 
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
