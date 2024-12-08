@@ -1,4 +1,5 @@
 # Notes: Used a deque(stack) to keep track of add and sub tracks that we do on second pass
+# A smarter way would be to do sum(stack) instead of the second while loop passand to keep track of subtraction of num*-1
 # TC: O(n)
 # SC: O(n) for stack
 
