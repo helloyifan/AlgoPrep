@@ -1,4 +1,5 @@
 # Notes: Heapq question
+# Theres also a quick select solution
 # TC: for each element, we are performing a O(log k) operation so O(n * logk)
 # SC: At most we are using O(k) space
 import heapq
