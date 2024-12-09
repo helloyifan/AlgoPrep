@@ -9,7 +9,7 @@ from collections import defaultdict
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
         prefix_sum_dict = defaultdict(int) 
-        #Not sure why 0:1, are we saying theres always a way to make 0?
+        # 0:1, To handle subarray that starts from the beginning (prefix_sum start at 0)
         prefix_sum_dict[0] = 1
         prefix_sum = 0
         retCount = 0
