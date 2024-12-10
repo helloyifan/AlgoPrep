@@ -1,5 +1,9 @@
 # Got it in 20mins,  Needed to scratch by head for the duplicate problem
 # Should use debugger to understand why
+
+# Time Complexity
+
+
 from typing import List
 import copy
 class Solution:

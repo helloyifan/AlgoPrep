@@ -1,5 +1,12 @@
 # Solved in 15 min, mostly from intuation
 # The ret = ret + curret is sus but maybe its okay
+
+# Time Complexity
+# For every level at DFS, we perform O(n!) operations
+# 3*2*1
+
+# Space Complexity
+# 
 from typing import List
 import copy
 class Solution:
