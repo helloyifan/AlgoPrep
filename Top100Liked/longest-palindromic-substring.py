@@ -5,41 +5,35 @@
 # 25min spent: this is worse then the brute force solution
 class Solution:
     def longestPalindrome(self, s: str) -> str:
-        dp = {}
+        def longestPalindromeWithOffSetTracker(s, offset):
+            maxPalindrome = ""
+            maxLen = 0
+        
+            for i in range(len(s)):
+                f, b= i, i + offset
+                while 0 <= f and b < len(s) and f <= b and s[f] == s[b]:                    
+                    # Max len
+                    curMaxLen = b-f + 1 # adding one bcuz ind - ind is 0, but the word len is 1
+                    if maxLen < curMaxLen:
+                        maxLen = curMaxLen
+                        maxPalindrome = s[f:b+1] #+1 offset to be inclusive
+                    f-=1
+                    b+=1
+            return maxLen, maxPalindrome
+        
+        maxOddLen, maxOddWord = longestPalindromeWithOffSetTracker(s, 0)
+        maxEvenLen, maxEvenWord = longestPalindromeWithOffSetTracker(s, 1)
 
-        maxPalindrome = ""
-        maxLen = 0
-
-        for i, c in enumerate(s):
-            dp[i] = True
-            entryToRemove = []
-            for key in dp:
-                currentSubString = s[key : i+1]
-                if self.isPalindrome(currentSubString):
-                    if len(currentSubString) > maxLen:
-                        maxLen =len(currentSubString)
-                        maxPalindrome = currentSubString
-                # else:
-                #     entryToRemove.append(key)
-
-            # for e in entryToRemove:
-            #     del dp[e]
-
-        return maxPalindrome
-    
-    def isPalindrome(self, s):
-        l, r = 0, len(s)-1
-        while l < r:
-            if s[l] != s[r]:
-                return False
-            l += 1
-            r -=1
-        return True
+        finRet = maxOddWord
+        if maxEvenLen > maxOddLen:
+            finRet = maxEvenWord
+        return finRet
 
 sol = Solution()
 print(sol.longestPalindrome("babad")) #bab
 print(sol.longestPalindrome("abb")) #bb
 
 
-# print(sol.isPalindrome("apple"))
-# print(sol.isPalindrome("pap"))
+print(sol.longestPalindrome("apple"))
+print(sol.longestPalindrome("pap"))
+print(sol.longestPalindrome("a"))
