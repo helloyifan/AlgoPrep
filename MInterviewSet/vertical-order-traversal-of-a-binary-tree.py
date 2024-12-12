@@ -1,3 +1,5 @@
+# Notes: Use row, column in DFS to keep track of posiotion
+# Use annoying postprocessing the sort and write and sort and write
 # TC: O(n) (DFS) 
 # + O ( nlogn ) O(nlogn) (sorting columns) 
 # + O ( nlogn ) O(nlogn) (sorting within columns and groups) 
