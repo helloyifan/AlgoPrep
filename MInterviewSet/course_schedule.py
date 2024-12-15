@@ -23,7 +23,7 @@ class BFSSolution:
         for p in prerequisites:
             targetCourse = p[0]
             prereqCourse = p[1]
-            adjList[prereqCourse][targetCourse] = True
+            adjList[prereqCourse][targetCourse] = True # key is TO, value is FROM
             inDegree[targetCourse] +=1
         
         # Subtract course from prereq list in BFS fashion
@@ -60,3 +60,42 @@ class BFSSolution:
 sol = Solution()
 print(sol.canFinish(2, [[1,0]]))
 print(sol.canFinish(2, [[1,0],[0,1]]))
+
+# Note: Traverse through DFS  (not optimal solution)
+class DFSSolution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        
+        UNTOUCHED = 0 # or if not in visited is also untouched/unvisited
+        VISITING = 1 
+        VISITED = 2
+
+        def dfs(node, adjList, visited):
+            if node in visited:
+                if visited[node] == 1:
+                    return False # cycle detected
+                if visited[node] == 2:
+                    return True
+
+            visited[node] = VISITING
+            for neighbor in adjList[node]:
+                tempRet = dfs(neighbor, adjList, visited)
+                if tempRet == False:
+                    return False # cycle detected
+            visited[node] = VISITED
+            
+            return True
+
+        adjList = defaultdict(dict)
+        for preReq in prerequisites:
+            targetCourse = preReq[0]
+            preReqCourse = preReq[1]
+
+            adjList[targetCourse][preReqCourse] = True
+
+
+        for course in range(numCourses):
+            visited = {} #every search we provide new visited 
+            tempRet = dfs(course, adjList, visited)
+            if tempRet == False:
+                return False
+        return True
