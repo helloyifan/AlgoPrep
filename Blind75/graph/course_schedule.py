@@ -13,7 +13,7 @@ class Solution(object):
         """
         self.adjacencyListDict = {} # {1 : {0: True}}, this means to take 1 you need 0
         # Iterate through this adjacencyListDict to check for cycles
-        
+    
         # Naivly add memoization
         self.memoization = {}
 
