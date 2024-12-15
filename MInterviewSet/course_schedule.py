@@ -1,14 +1,16 @@
 # Notes: 
 # Indegree: Keep track of incoming edges to signal unblockage when 0
-# AdjList: to keep track of edges 
+# AdjList: to keep track of edges (entry means taking X means you are partially unblocking elements in adjList[X])
 # BFS to process
+# THIS SOLUTION IS TOPOLOGICALLY SORTED AS A SIDE EFFECT :)!
+
 
 # Complexity analysis: Use V E for graph questions
 # TC: Building adjList is O(V+E) and indegree is O(V), BFS is O(E) total is O(V+E)
 # SC: AdjList is O(V+E), inDegree is O(V) total is O(V+E)
 from typing import List
 from collections import defaultdict
-class Solution:
+class BFSSolution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         adjList = defaultdict(dict)
 
