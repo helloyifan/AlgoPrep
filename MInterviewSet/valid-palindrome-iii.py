@@ -1,36 +1,35 @@
 # Note: For Valid Palindrome 2. the trick is try skipping the L or R incase of diversence
 # For Valid Palindrome 3, so that recursively
-# TC: O(N*N)= O(N^2) - if there is a diverance, we do DFS which is O(N) operation and we might diverge N times
-# SC: O(N^2) We need to store all possible combinations of (l,r,k) 
+# TC: O(N^2 *k)
+# There are N different possiblity for L and N different possibilities for R so together is O(N^2)
+# We will have k diverance so its O(N^2 *k)
+# SC: O(N^2 *k) We need to store all possible combinations of (l,r,k) 
 class Solution:
     def isValidPalindrome(self, s: str, k: int) -> bool:
-        isNotAPalindromWithThesePointers = {}
-        def dfs(s, k, l, r):
-            if (l, r, k) in isNotAPalindromWithThesePointers:
-                return False
+        isNotAValidPalindrome = {}
 
-            if k == -1: # Fail condition removed too many
+        def dfs(s, l, r, misMatchCounter):
+            if (l,r,misMatchCounter) in isNotAValidPalindrome:
                 return False
+            if misMatchCounter > k:
+                return False
+            
             while l < r:
-
-                if s[l] == s[r]:
-                    l+=1
-                    r-=1
-                else: #if they dont equal
-                    lSide = dfs(s, k-1, l+1, r) # Skip L letter
-                    if lSide:
+                if s[l] != s[r]:
+                    lRet = dfs(s, l+1, r, misMatchCounter + 1)
+                    if lRet == True:
                         return True
-                    rSide = dfs(s, k-1, l, r-1) # Skip R letter
-                    if rSide:
+                    rRet = dfs(s, l, r-1, misMatchCounter + 1)
+                    if rRet == True:
                         return True
-                    
-                    isNotAPalindromWithThesePointers[(l, r, k)] = True
+                    isNotAValidPalindrome[(l,r,misMatchCounter)] = True
                     return False
+                else:
+                    l += 1
+                    r -= 1
             return True
         
-        l = 0
-        r = len(s)-1
-        ret = dfs(s, k, l, r)
+        ret = dfs(s, 0, len(s)-1, 0)
         print(ret)
         return ret
     
