@@ -1,26 +1,26 @@
+# Notes: For any staring position l to r,
+# where l is always in the result
+# there are (r-l+1) subarrays to r
+
+# TC: O(n) this is one pass
+# SC: O(1) this constant
 from typing import List
 
 class Solution:
     def countSubarrays(self, nums: List[int], k: int) -> int:
         l, r = 0, 0 
         runningSum = 0
-        retTotal = 0
+        res = 0
         while r < len(nums):
             runningSum += nums[r]
-            r+=1
-            while l < r and runningSum >= k/(r-l):
-                #runningSum -= nums[l]
+            while l <= r and runningSum * (r-l+1) >= k: # adjust window until we have another valid range
+                runningSum -= nums[l]
                 l += 1
-                runningSum = 0
-                r = l
-
-            if runningSum != 0 and runningSum < k/(r-l):
-                #print(runningSum, k/(r-l+1))
-                retTotal += 1
-
-
-        print(retTotal)
-        return retTotal
+            res += (r-l+ 1) # meaning anytime r is moved, #finad all valid subarray of given range, 
+            # in a range, theres (r-l+1) unique subarray
+            r+=1
+        print(res)
+        return res
 
 sol = Solution()
 sol.countSubarrays([2,1,4,3,5], 10) # 6
@@ -28,10 +28,3 @@ sol.countSubarrays([1,1,1], 5) # 5
 sol.countSubarrays([1,2,9,1,5],96) # 15
 
 
-# 2 adjustedK = 10/1
-# 2,1 adjustedK = 10/2
-# 2,1,4 adjustedK = 10/3 
-
-# So the opersation is that adjustedK keeps getting smaller and smaller
-# if runningSum is always getting bigger and adjusted k is getting smaller
-# then give up, move the LHS
