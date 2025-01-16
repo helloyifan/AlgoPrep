@@ -26,5 +26,13 @@ sol = Solution()
 sol.countSubarrays([2,1,4,3,5], 10) # 6
 sol.countSubarrays([1,1,1], 5) # 5
 sol.countSubarrays([1,2,9,1,5],96) # 15
+sol.countSubarrays([1,2,3,4],100) # 10
 
 
+## example [1,2,3,4], k = 100
+# 1 # loop 1 res += 1
+# 1,2 # loop 2 (accounting for 1,2 and 2) res += 2
+# 1,2,3 # loop 3(accounting for 1,2,3 and 2,3 and 3) res += 3
+# 1,2,3,4 # loop 4(accounting for 1,2,3,4 and 2,3,4 and 3,4 and 4) res += 4
+
+# Total 10
