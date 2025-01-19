@@ -1,12 +1,8 @@
-# AlgoPrep
-AlgoPrep
+# Shit i don't know
+## Topics
 
-
-***Lmao imagine [Jasper Shan](https://jaspershan.ca/) creeping on ppls github in 2022 thats cringe***
-
-
-## Neetcode status
-
+- [ ] N-degree shit
+- [ ] Binsearch, but just finding the latests/smallest value b4 the target
 ## Questions to revisit
 jump-game-ii
 longest-increasing-subsequence
