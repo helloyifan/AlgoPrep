@@ -1,3 +1,5 @@
+# Improve alot, but still doesn't pass lc
+
 from typing import List
 import heapq
 
@@ -40,22 +42,20 @@ class Trie:
         newVal = (time, sentence)
 
         if len(heap) == 3:
+            # Check the smallest element in the heap
             oldVal = heapq.heappop(heap)
-            oldValTime, oldValSentence = oldVal[0], oldVal[1]
-            
-            if oldValTime == time:
-                # If the time value is the same, compare lexigraphically
-                if oldValSentence < sentence:
-                    heapq.heappush(heap, oldVal)
-                else:
-                    heapq.heappush(heap, newVal)
-            elif oldValTime < time:
-                heapq.heappush(heap, oldVal)
-            else:
-                heapq.heappush(heap, newVal)
-        else:
-            heapq.heappush(heap, newVal)
+            oldValTime, oldValSentence = oldVal
 
+            if time > oldValTime or (time == oldValTime and sentence < oldValSentence):
+                # Replace the smallest element if the new value is larger
+                heapq.heappush(heap, newVal)
+            else:
+                # Keep the old value
+                heapq.heappush(heap, oldVal)
+        else:
+            # Directly add the new value if heap size is less than 3
+            heapq.heappush(heap, newVal)
+            
     def getTimes(self, sentence):
         cur = self.root
         for c in sentence:
@@ -68,16 +68,26 @@ class Trie:
         tempHeap = []
         while len(cur.heap) > 0:
             t = heapq.heappop(cur.heap)
-            ret.append(t[1])
+            ret.append((t[0], t[1]))
             heapq.heappush(tempHeap, t)
 
-        cur.heap = tempHeap        
-        ret.reverse()
-        return ret
+        cur.heap = tempHeap
+
+        # Sort by first element descending, then second element lexicographically ascending
+        # Omg i would of never come up with this stupid shit
+        ret.sort(key=lambda x: (-x[0], x[1]))
+
+        actualRet = []
+        for r in ret:
+            actualRet.append(r[1])
+
+        return actualRet
 
 class AutocompleteSystem:
-    contentMap = {}
     def __init__(self, sentences: List[str], times: List[int]):
+        self.curSearchSentence = ''
+        self.contentMap = {}
+
         for index in range(len(sentences)): 
             self.contentMap[sentences[index]] = times[index]
 
@@ -90,7 +100,6 @@ class AutocompleteSystem:
             self.trie.addSentence(key, self.contentMap[key])
         return
 
-    curSearchSentence = ''
     def input(self, c: str) -> List[str]:
         ret = []
         if c == '#':
@@ -114,6 +123,10 @@ class AutocompleteSystem:
 # param_1 = obj.input(c)
 
 sol = AutocompleteSystem(["i love you", "island", "iroman", "i love leetcode"], [5, 3, 2, 2])
+sol.input('i')
+sol.input(' ')
+sol.input('a')
+sol.input('#')
 sol.input('i')
 sol.input(' ')
 sol.input('a')
