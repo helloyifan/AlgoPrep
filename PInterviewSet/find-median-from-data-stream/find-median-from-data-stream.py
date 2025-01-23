@@ -2,8 +2,8 @@ import heapq
 class MedianFinder:
 
     def __init__(self):
-        minHeap = []
-        maxHeap = []
+        leftHeap = [] # maxHeap
+        rightHeap = [] # minHeap
         return
 
     def addNum(self, num: int) -> None:
@@ -25,3 +25,6 @@ sol.findMedian()
 sol.addNum(3)
 sol.findMedian()
 
+
+# if value is smaller then head of leftHeap, add it to leftHeap
+#  if left heap size is 2 greater then right heap, then pop one and add to rightHeap
