@@ -1,15 +1,13 @@
 from typing import List
 
+
 # Notes:
-# Step 1. Create a debt list of numbers not dict
-# Step 2. Backtrack with the intent to find min transactions
-# Recursion will be managed by incremetning starting index def backtracking(curIndex=0, debtList):
-# We know that we are getting closer when curIndex * curAttempResolvingDebt is a neg number
-# Backtrack modify and backtrack cleanup
+# For Printing path, we need to keep track of key to index in our list
+# At the end of our traversal, we have our path
+# We keep our path before we backtrack
+# The best path will have the lowest numbers of transactions
 
-# TC: O((T-1)!) as there exists t-1 persons 
-# SC: O(T)
-
+import copy
 class Solution:
     def minTransfers(self, transactions: List[List[int]]) -> int:
         debt = {} # O(T)
@@ -27,19 +25,31 @@ class Solution:
 
         # For our algo we need debt in list format
         debtList = [] # O(T)
+        indexToNameMap = {} # NEW For printing path
+        indexCount = 0
         for key in debt: # O(T)
             debtList.append(debt[key])
-        print(debtList)
+            indexToNameMap[key] = indexCount # NEW For printing path
+            indexCount += 1
+        print('debtList: ', debtList)
 
         # Step 2. Specific algorithm to settle debt
         # With backtracking?
-        def backtracking(curIndex, debtList):
+        
+        best_path = []
+        def backtracking(curIndex, debtList, path):
+            nonlocal best_path # This is to ignored best_path and use the one at the above scope
             if curIndex == len(debtList):
+                # At the end of our traversal, we have our path
+                # We keep our path before we backtrack
+                # The best path will have the lowest numbers of transactions
+                if not best_path or len(path) < len(best_path): 
+                    best_path = path[:]
                 return 0
 
             if debtList[curIndex] == 0:
                  # do something else
-                return backtracking(curIndex+1, debtList)
+                return backtracking(curIndex+1, debtList, path)
 
             minVal = float('inf')
             for i in range(curIndex+1, len(debtList)): # We iterate one less time everytime so #O(T!)
@@ -48,16 +58,21 @@ class Solution:
 
                 if curDebt * curAttempResolvingDebt < 0: # Neg number means we are closer to resolving debt
                     debtList[i] += curDebt
-                    minVal = min(minVal, 1+ backtracking(curIndex+1, debtList))
+                    path.append((indexToNameMap[curIndex], indexToNameMap[i], curDebt))
+
+                    minVal = min(minVal, 1 + backtracking(curIndex + 1, debtList, path))
+
                     debtList[i] -= curDebt #backtrack cleanup
-                
+                    path.pop()
+
                     if curDebt + curAttempResolvingDebt == 0:
                         break
             return minVal
         
-        minVal = backtracking(0, debtList)
-        return minVal
+        minVal = backtracking(0, debtList, [])
+        #print(best_path)
+        return best_path
     
 sol = Solution()
-#print(sol.minTransfers([[0,1,10],[2,0,5]]))
+print(sol.minTransfers([[0,1,10],[2,0,5]]))
 print(sol.minTransfers( [[0,1,10],[1,0,1],[1,2,5],[2,0,5]]))
