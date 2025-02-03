@@ -20,7 +20,7 @@ class Solution:
                     if i in dp:
                         dp[i] = min(dp[i], dp[curTarget] + 1)
                     else:
-                        dp[i] = curTarget + 1
+                        dp[i] = dp[curTarget] + 1
                     set = True
 
             if set == False:
@@ -30,10 +30,11 @@ class Solution:
 
 s = Solution()
 # print(s.coinChange([1,2,5], 11))
-print(s.coinChange([1,2,5], 13))
+# print(s.coinChange([1,2,5], 13))
 # print(s.coinChange([2], 3))
 # print(s.coinChange([1], 0))
 # print(s.coinChange([1], 1))
 # print(s.coinChange([1,2147483647], 2))
 # print(s.coinChange([2,4,6,8,10,12,14,16,18,20,22,24], 9999)) # This solution is too slow for this
-print(s.coinChange( [5, 12345, 6, 7,30], 35))
+# print(s.coinChange( [5, 12345, 6, 7,30], 35))
+print(s.coinChange([2], 4))
