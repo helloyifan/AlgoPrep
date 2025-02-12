@@ -77,4 +77,4 @@ sol = Solution()
 
 sol.minTransfers([[0,1,10],[2,0,5]]) # 2
 sol.minTransfers( [[0,1,10],[1,0,1],[1,2,5],[2,0,5]]) # 1
-sol.minTransfers([[0,1,1],[1,2,1],[2,0,1]]) # 1
+sol.minTransfers([[0,1,1],[1,2,1],[2,0,1]]) # 0
