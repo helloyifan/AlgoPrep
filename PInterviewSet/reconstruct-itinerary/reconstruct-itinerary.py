@@ -2,15 +2,24 @@ from typing import List
 from collections import defaultdict
 
 class Solution:
+
+    # Version 1 of the problem
+    # No cycles in the input, 
+    # always one start source and one final destination
+
+
+    # Version 2 of the problem
+
     # Top down neetcode approach
     # This solution is too slow btw
     # TC: Since we are potentially back tracking on every Edge, the TC is O(E^2)
+    # It should be O(E!)
     # SC: Since we are storing every edge, the S is O(E)
     def findItinerary(self, tickets: List[List[str]]) -> List[str]:
         # Step 1. Make graph
         dd = defaultdict(list)
         
-        # Step 1.5. Make sure the tickets are sorted in reverse order by start airport
+        # Step 1.5. Make sure the tickets are sorted 
         tickets.sort()
         for t in tickets:
             dd[t[0]].append(t[1])
