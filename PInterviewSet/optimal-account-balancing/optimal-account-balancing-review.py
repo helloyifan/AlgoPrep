@@ -31,26 +31,26 @@ class Solution:
             debtList.append(debt[key])
         print(debtList)
 
-        # Step 2. Specific algorithm to settle debt
-        # With backtracking?
+        # Step 2. Specific algorithm to settle debtWith backtracking
         def backtracking(curIndex, debtList):
             if curIndex == len(debtList):
                 return 0
 
-            if debtList[curIndex] == 0:
-                 # do something else
+            if debtList[curIndex] == 0: # If altready debt free move forwards
                 return backtracking(curIndex+1, debtList)
+           
+            curDebt = debtList[curIndex] # current value we are workth with
 
             minVal = float('inf')
             for i in range(curIndex+1, len(debtList)): # We iterate one less time everytime so #O(T!)
-                curDebt = debtList[curIndex]
                 curAttempResolvingDebt = debtList[i]
 
                 if curDebt * curAttempResolvingDebt < 0: # Neg number means we are closer to resolving debt
                     debtList[i] += curDebt
                     minVal = min(minVal, 1+ backtracking(curIndex+1, debtList))
                     debtList[i] -= curDebt #backtrack cleanup
-                
+
+                    # I think this is optional
                     if curDebt + curAttempResolvingDebt == 0:
                         break
             return minVal
