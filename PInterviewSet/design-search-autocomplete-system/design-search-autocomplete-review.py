@@ -1,3 +1,8 @@
+# Notes
+# Discuss trade offs
+# 1. Store At each level (for better TC, denormalized data worse SC,)
+# 2. Store at root level, (slower/worse, TC better SC)
+
 from typing import List
 
 
