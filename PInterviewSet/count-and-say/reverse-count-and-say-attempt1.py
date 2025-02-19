@@ -57,5 +57,5 @@ class Solution:
         return finRet
 
 sol = Solution()
-#print(sol.sample_reverseCountAndSay('1211'))
-print(sol.reverseCountAndSay('1211'))
+print(sol.sample_reverseCountAndSay('1211'))
+#print(sol.reverseCountAndSay('1211'))
