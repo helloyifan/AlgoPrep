@@ -12,11 +12,12 @@ class Solution {
         vector<int> getConcatenation(vector<int>& nums) {
             vector<int> numsCopy(nums);
             nums.insert(nums.end(), numsCopy.begin(), numsCopy.end());
-                        
-            copy(
-                nums.begin(), nums.end(),
-                ostream_iterator<int>(cout, " ")
-            );
+            
+            //Print a list without forloop
+            // copy(
+            //     nums.begin(), nums.end(),
+            //     ostream_iterator<int>(cout, " ")
+            // );
             return nums;
         }
 };
