@@ -13,3 +13,6 @@ __env__/
 # IDE settings
 .idea/
 .vscode/
+
+# Avoid a.out from cpp compile
+**/a.out
